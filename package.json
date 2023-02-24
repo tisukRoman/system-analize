@@ -1,0 +1,15 @@
+{
+  "name": "lab_1",
+  "type": "module",
+  "description": "Program from system analysis for lab-1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Tyshchuk Roman",
+  "dependencies": {
+    "calculate-correlation": "^1.2.3",
+    "inquirer": "^9.1.4",
+    "mathjs": "^11.5.1"
+  }
+}
