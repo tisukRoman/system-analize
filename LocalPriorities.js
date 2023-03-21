@@ -68,7 +68,12 @@ export class LocalPriorities {
     // Макс.власне значення
     const lambdaMax = multiply(this.eT, multiply(this.matrix, W));
 
-    printMatrix(W, "Сер.Геометричне зважене", 3);
-    printMatrix(lambdaMax, "Власне значення lambdaMax:", 3);
+    //printMatrix(W, "Сер.Геометричне зважене", 3);
+    //printMatrix(lambdaMax, "Власне значення lambdaMax:", 3);
+
+    return {
+      W,
+      lambdaMax,
+    };
   }
 }

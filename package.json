@@ -1,10 +1,10 @@
 {
-  "name": "lab_1",
+  "name": "lab program",
   "type": "module",
-  "description": "Program from system analysis for lab-1",
-  "main": "index.js",
+  "description": "Program from system analysis",
+  "main": "lab1.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node lab1.js"
   },
   "author": "Tyshchuk Roman",
   "dependencies": {

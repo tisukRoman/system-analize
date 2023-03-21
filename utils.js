@@ -4,9 +4,23 @@ export function printMatrix(matrix, title = "", roundNum = 2) {
   let res;
 
   if (isMatrix(matrix)) {
-    res = matrix.map((row) => row.map((num) => round(num, roundNum)));
+    res = matrix.map((row) =>
+      row.map((num) => {
+        if (typeof num == "string") {
+          return num;
+        } else {
+          return round(num, roundNum);
+        }
+      })
+    );
   } else if (Array.isArray(matrix)) {
-    res = matrix.map((num) => round(num, roundNum));
+    res = matrix.map((num) => {
+      if (typeof num == "string") {
+        return num;
+      } else {
+        return round(num, roundNum);
+      }
+    });
   } else {
     res = round(matrix, roundNum);
   }
