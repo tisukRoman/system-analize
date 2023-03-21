@@ -90,12 +90,22 @@ async function handleLocalPrioritiesQuestion(answer) {
   if (answer == "Ітеративним методом") {
     printSpace();
     printTitle("Ітераційний метод");
-    localPriorities.calcIterative(0.01);
+
+    const { lambdaMax, W } = localPriorities.calcIterative(0.01);
+
+    printMatrix(W, "Власний вектор W:", 3);
+    printMatrix(lambdaMax, "Власне значення lambdaMax:", 3);
+
     await startQuestion();
   } else {
     printSpace();
     printTitle("Метод середнього геометричного");
-    localPriorities.calcMediumGeometric();
+
+    const { lambdaMax, W } = localPriorities.calcMediumGeometric();
+
+    printMatrix(W, "Сер.Геометричне зважене", 3);
+    printMatrix(lambdaMax, "Власне значення lambdaMax:", 3);
+
     await startQuestion();
   }
 }

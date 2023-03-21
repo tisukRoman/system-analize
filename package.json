@@ -1,10 +1,11 @@
 {
-  "name": "lab program",
+  "name": "MAI System Analysis program",
   "type": "module",
   "description": "Program from system analysis",
   "main": "lab1.js",
   "scripts": {
-    "start": "node lab1.js"
+    "lab1": "node lab1.js",
+    "lab2": "node lab2.js"
   },
   "author": "Tyshchuk Roman",
   "dependencies": {

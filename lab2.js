@@ -63,69 +63,20 @@ const actuality = [
   [1 / 3, 1],
 ];
 
-// Знаходження векторів локальних пріоритетів альтернатив
-const actualityAlternativesVectors = transpose(
-  [popularity, perspective].map((matrix) => {
-    const localPriorities = new LocalPriorities(matrix);
-    const { W } = localPriorities.calcMediumGeometric();
-    return W;
-  })
-);
-
-printMatrix(
-  actualityAlternativesVectors,
-  "Вектори локальних пріоритетів W1, W2",
-  3
-);
-
-const workAlternativesVectors = transpose(
-  [simplicity, vacancies].map((matrix) => {
-    const localPriorities = new LocalPriorities(matrix);
-    const { W } = localPriorities.calcMediumGeometric();
-    return W;
-  })
-);
-
-printMatrix(workAlternativesVectors, "Вектори локальних пріоритетів W3, W4", 3);
-
-// Знаходження векторів локальних пріоритетів критеріїв
-function getLocalPriorityVector(matrix) {
-  const lp = new LocalPriorities(matrix);
-  const { W } = lp.calcMediumGeometric();
-  return transpose(W);
-}
-
-const workCriterionVector = getLocalPriorityVector(work);
-
-printMatrix(
-  workCriterionVector,
-  "Вектор локального пріоритету критерію Роботи",
-  3
-);
-
-const actualityCriterionVector = getLocalPriorityVector(actuality);
-
-printMatrix(
-  actualityCriterionVector,
-  "Вектор локального пріоритету критерію Актуальності",
-  3
-);
+// Вектор вагових коєфіцієнтів
+const weights = [0.5, 0.5];
 
 // Ієрархічний синтез
+const synthesis = new Synthesis(
+  [
+    [simplicity, vacancies], // Критерії Можливість знайти роботу
+    [popularity, perspective], // Критерії Актуальність мови в майбутньому
+  ],
+  [work, actuality], // Критерії вищого рівня
+  weights // Вектор вагових коєфіцієнтів
+);
 
-const WAt = multiply(actualityAlternativesVectors, actualityCriterionVector);
-const WAp = multiply(workAlternativesVectors, workCriterionVector);
-
-printMatrix(WAt, "WAt:", 3);
-printMatrix(WAp, "WAp:", 3);
-
-const localPrioritiesVectors = transpose([WAt, WAp]);
-
-const We = transpose([0.25, 0.25]);
-
-printMatrix(localPrioritiesVectors, "Локальні пріоритети:", 3);
-printMatrix(We, "We:", 3);
-
-const globalPriorities = multiply(localPrioritiesVectors, We);
+// Знаходження глобальних пріоритетів
+const globalPriorities = synthesis.globalPriorities();
 
 printMatrix(globalPriorities, "Глобальні пріоритети:", 3);
