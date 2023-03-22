@@ -1,7 +1,7 @@
 {
   "name": "MAI System Analysis program",
   "type": "module",
-  "description": "Program from system analysis",
+  "description": "Program from system analysis for MAI",
   "main": "lab1.js",
   "scripts": {
     "lab1": "node lab1.js",
